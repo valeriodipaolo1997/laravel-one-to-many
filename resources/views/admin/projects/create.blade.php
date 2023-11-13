@@ -39,6 +39,24 @@
             </div>
 
             <div class="mb-5">
+                        <label for="type_id" class="form-label">Types</label>
+
+                        <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+                            <option selected disabled>Select a Type</option>
+                            <option value="">Untyped</option>
+                            @forelse($types as $type)
+                                <option value=" {{$type->id}} " {{$type->id == old('type_id') ? 'selected' : ''}} >{{$type->name}}</option>
+                            @empty
+
+                            @endforelse
+                        </select>
+                        @error('type_id')
+                        <div class="text-danger"> {{$message}} </div>
+                        @enderror
+                </div>
+                <!-- /.col -->
+
+            <div class="mb-5">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" cols="30" rows="5" placeholder="Type a description" required>{{old('description')}}</textarea>
                 @error('description')

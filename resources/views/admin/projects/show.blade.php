@@ -18,6 +18,10 @@
 
                 <div class="card-body">
 
+                    <div class="badge bg-primary">
+                        {{$project->type ? $project->type->name : 'Untypized'}}
+                    </div>
+
                     <div class="card-title">
                         <div class="badge text-bg-info">Nome del progetto</div>
                         <h2>{{$project->title}}</h2>

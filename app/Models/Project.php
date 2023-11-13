@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -15,7 +16,7 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['title', 'thumb', 'description', 'content', 'slug', 'project_url', 'git_url'];
+    protected $fillable = ['title', 'thumb', 'description', 'content', 'slug', 'project_url', 'git_url', 'type_id'];
     
     protected function thumb(): Attribute
     {
@@ -33,5 +34,10 @@ class Project extends Model
     public static function generateSlug($title)
     {
         return Str::slug($title, '-');
+    }
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Type::class);
     }
 }
